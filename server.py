@@ -2,9 +2,11 @@ from typing import Union
 
 from fastapi import FastAPI
 from pydantic import BaseModel
+from openai import OpenAI
 import requests
 
 app = FastAPI()
+client = OpenAI()
 
 class Query(BaseModel):
     description: str
@@ -16,10 +18,9 @@ def read_root():
 
 @app.post("/modelize")
 def modelize(description: Query):
-    requests.post(
-        "", json={
-            
-        }
+    response = client.responses.create(
+        model="gpt-4o",
+        input=description.description
     )
-    return {"response": description.description}
+    return {"response": response.output_text}
 
