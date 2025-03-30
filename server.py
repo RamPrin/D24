@@ -32,6 +32,6 @@ def analyze(model: TM):
     response = client.response.create(
         model="gpt-4o",
         input=model.model,
-        instructions="Analyze the following threat model and retrieve threats. Use STRIDE methodology. Give only list of threats categorized by STRIDE."
+        instructions="Analyze the following threat model and retrieve threats. Use STRIDE methodology. Give only list of threats categorized by STRIDE with threat title and brief description."
     )
     return {"response": response.output_text}
