@@ -29,7 +29,7 @@ def modelize(description: Query):
 
 @app.post("/analyze")
 def analyze(model: TM):
-    response = client.response.create(
+    response = client.responses.create(
         model="gpt-4o",
         input=model.model,
         instructions="Analyze the following threat model and retrieve threats. Use STRIDE methodology. Give only list of threats categorized by STRIDE with threat title and brief description."
