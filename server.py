@@ -11,6 +11,8 @@ client = OpenAI()
 class Query(BaseModel):
     description: str
 
+class TM(BaseModel):
+    model: str
 
 @app.get("/")
 def read_root():
@@ -25,3 +27,11 @@ def modelize(description: Query):
     )
     return {"response": response.output_text}
 
+@app.post("/analyze")
+def analyze(model: TM):
+    response = client.response.create(
+        model="gpt-4o",
+        input=model.model,
+        instructions="Analyze the following threat model and retrieve threats. Use STRIDE methodology. Give only list of threats categorized by STRIDE."
+    )
+    return {"response": response.output_text}
