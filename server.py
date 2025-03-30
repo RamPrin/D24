@@ -20,7 +20,8 @@ def read_root():
 def modelize(description: Query):
     response = client.responses.create(
         model="gpt-4o",
-        input=description.description
+        input=description.description,
+        instructions="Use the last PyTM library version. Provide only model code snippet"
     )
     return {"response": response.output_text}
 
