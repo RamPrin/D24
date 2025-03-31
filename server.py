@@ -34,6 +34,7 @@ def analyze(model: TM):
         input=model.model,
         instructions="Analyze the following threat model and retrieve threats. "
         "Use STRIDE methodology. Give only list of threats categorized by STRIDE with threat title and brief description."
-        "Evaluate these threats with DREAD approach"
+        "Find as many threats as you can"
+        "Evaluate these threats with DREAD approach."
     )
     return {"response": response.output_text}
