@@ -61,6 +61,6 @@ def analyze(description: Query):
         input=description.model,
         instructions="Compose the model using PyTM and analyze it to retrieve threats by STRIDE methodology."
         "Use the latest PyTM library version. Find as many threats as you can"
-        f"Give the output by template:\n{template}"
+        f"Just output the model and list of threats"
     )
     return {"response": response.output_text}
