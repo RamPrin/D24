@@ -14,9 +14,9 @@ Insert PyTM threat model as a codeblock
 -->
 # Threats
 <!---
-Write list of threats in the following format:
+Write list of threats for each STRIDE category in the following format:
 - [Threat title]: [Short threat description]
-[Threat Evaluation by DREAD]  
+    [Threat Evaluation by DREAD]  
 -->
 """
 
