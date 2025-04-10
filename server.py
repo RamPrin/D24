@@ -57,8 +57,8 @@ def analyze(model: TM):
 @app.post("/one_agent")
 def analyze(description: Query):
     response = client.responses.create(
-        model="gpt-4o",
-        input=description.model,
+        model=description.model,
+        input=description.description,
         instructions="Compose the model from description using PyTM and analyze it for threats by STRIDE methodology."
         "Use the latest PyTM library version. Find as many threats as you can"
         f"Use the following template as an output:\n{template}"
