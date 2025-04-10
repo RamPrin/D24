@@ -15,8 +15,18 @@ Insert PyTM threat model as a codeblock
 # Threats
 <!---
 Write list of threats for each STRIDE category in the following format:
-- [Threat title]: [Short threat description]
-    [Threat Evaluation by DREAD]  
+Spoofing:
+[List of all threats about Spoofing in format "Title: Short description"]
+Tampering
+[List of all threats about Tampering in format "Title: Short description"]
+Repudiation
+[List of all threats about Repudiation in format "Title: Short description"]
+Information Disclosure
+[List of all threats about Information Disclosure in format "Title: Short description"]
+Denial of Service
+[List of all threats about Denial of Service in format "Title: Short description"]
+Elevation of Privilege
+[List of all threats about Elevation of Privilege in format "Title: Short description"]
 -->
 """
 
