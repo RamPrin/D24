@@ -1,4 +1,5 @@
 __pycache__/
 venv/
-response.json
+response.*
 requester.py
+model.py

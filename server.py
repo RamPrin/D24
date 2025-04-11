@@ -10,7 +10,11 @@ client = OpenAI()
 template="""
 # Model:
 <!---
-Insert PyTM threat model as a codeblock
+Insert PyTM threat model as a codeblock:
+- Boundaries
+- Components
+- Dataflows
+tm.process()
 -->
 # Threats
 <!---
