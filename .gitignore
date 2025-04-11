@@ -1,5 +1,2 @@
 __pycache__/
 venv/
-response.*
-requester.py
-model.py
