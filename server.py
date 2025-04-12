@@ -84,13 +84,13 @@ def analyze(description: Query):
         model = model[0]
     else:
         model = ""
-    threats = re.findall(r"(#Threats [\S\s]*)")
+    threats = re.findall(r"(#Threats [\S\s]*)", text)
     if len(threats) != 0:
         threats = threats[0]
     else:
         threats = ""
     return {
-        "response": response.output_text,
+        "response": text,
         "model": model,
         "threats": threats
     }
