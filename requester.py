@@ -8,7 +8,7 @@ def write_this_down(system: str):
     text = json.loads(open(f"data/{system}/response.json").read())["response"]
     with open(f"data/{system}/response.md", 'w') as f:
         f.write(text)
-    model : list[re.Match[str]|None] = re.findall(r"# Model:\n```python([\S\s]*?)\n```", text)
+    model : list[re.Match[str]] = re.findall(r"# Model:\n```python([\S\s]*?)\n```", text)
     if len(model) != 0:
         with open(f"data/{system}/model.py", "w") as f:
             f.write(model[0])
@@ -30,12 +30,14 @@ def get_description(system: str):
     except Exception as e:
         print(e)
 if __name__ == "__main__":
-    for (_, fold, file) in os.walk("data/"):
-        for system in fold:
-            if os.path.exists(f"data/{system}/description.md"):
-                get_description(system)
-                time.sleep(1)
-        break
+    # for (_, fold, file) in os.walk("data/"):
+    #     for system in fold:
+    #         if os.path.exists(f"data/{system}/description.md"):
+    #             get_description(system)
+    #             time.sleep(1)
+    #     break
+    data = open("./data/s3/description.md").read()
+    print(json.dumps({"description": data, "model": "gpt-4o"}))
 
     # response = get_description("oauth2.0")
     # write_this_down("oauth2.0")

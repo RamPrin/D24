@@ -4,6 +4,7 @@ from fastapi import FastAPI
 from pydantic import BaseModel
 from openai import OpenAI
 import requests
+import re
 
 app = FastAPI()
 client = OpenAI()
@@ -77,4 +78,19 @@ def analyze(description: Query):
         "Use the latest PyTM library version. Find as many threats as you can"
         f"Use the following template as an output:\n{template}"
     )
-    return {"response": response.output_text}
+    text = response.output_text
+    model : list[re.Match[str]] = re.findall(r"# Model:\n```python([\S\s]*?)\n```", text)
+    if len(model) != 0:
+        model = model[0]
+    else:
+        model = ""
+    threats = re.findall(r"(#Threats [\S\s]*)")
+    if len(threats) != 0:
+        threats = threats[0]
+    else:
+        threats = ""
+    return {
+        "response": response.output_text,
+        "model": model,
+        "threats": threats
+    }
