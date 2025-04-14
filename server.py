@@ -55,7 +55,9 @@ def modelize(description: Query):
         instructions="Compose a threat model from description using PyTM library."
         "Use the last PyTM library version. Provide only model code snippet"
     )
-    return {"response": response.output_text}
+    text = response.output_text
+    model : list[re.Match[str]] = re.findall(r"# Model:\n```python([\S\s]*?)\n```", text)
+    return {"response": response.output_text, "model": model}
 
 @app.post("/analyze")
 def analyze(model: TM):
@@ -67,7 +69,7 @@ def analyze(model: TM):
         "Find as many threats as you can."
         "Evaluate these threats with DREAD approach."
     )
-    return {"response": response.output_text}
+    return {"threats": response.output_text}
 
 @app.post("/one_agent")
 def analyze(description: Query):
