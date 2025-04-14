@@ -57,7 +57,7 @@ def modelize(description: Query):
     )
     text = response.output_text
     model : list[re.Match[str]] = re.findall(r"# Model:\n```python([\S\s]*?)\n```", text)
-    return {"response": response.output_text, "model": model}
+    return {"response": response.output_text, "model": model[0]}
 
 @app.post("/analyze")
 def analyze(model: TM):
@@ -81,7 +81,7 @@ def analyze(description: Query):
         f"Use the following template as an output:\n{template}"
     )
     text = response.output_text
-    model : list[re.Match[str]] = re.findall(r"# Model:\n```python([\S\s]*?)\n```", text)
+    model : list[re.Match[str]] = re.findall(r"```python([\S\s]*?)\n```", text)
     if len(model) != 0:
         model = model[0]
     else:
