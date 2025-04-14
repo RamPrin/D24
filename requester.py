@@ -61,9 +61,9 @@ if __name__ == "__main__":
     #             modelize_analyze(system)
     #             time.sleep(2)
     #     break
-    modelize_analyze("s3")
-    # data = open("./data/s3/description.md").read()
-    # print(json.dumps({"description": data, "model": "gpt-4o"}))
+    # modelize_analyze("s3")
+    data = open("./data/s3/description.md").read()
+    print(json.dumps({"description": data, "model": "gpt-4o"}))
 
     # response = get_description("oauth2.0")
     # write_this_down("oauth2.0")

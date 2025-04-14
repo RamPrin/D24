@@ -56,8 +56,8 @@ def modelize(description: Query):
         "Use the last PyTM library version. Provide only model code snippet"
     )
     text = response.output_text
-    model : list[re.Match[str]] = re.findall(r"# Model:\n```python([\S\s]*?)\n```", text)
-    return {"response": response.output_text, "model": model[0]}
+    model : list[re.Match[str]] = re.findall(r"```python([\S\s]*?)\n```", text)
+    return {"response": response.output_text, "model": model[0] if len(model) > 0 else ""}
 
 @app.post("/analyze")
 def analyze(model: TM):
@@ -81,7 +81,7 @@ def analyze(description: Query):
         f"Use the following template as an output:\n{template}"
     )
     text = response.output_text
-    model : list[re.Match[str]] = re.findall(r"```python([\S\s]*?)\n```", text)
+    model : list[re.Match[str]] = re.findall(r"# Model:\n```python([\S\s]*?)\n```", text)
     if len(model) != 0:
         model = model[0]
     else:
