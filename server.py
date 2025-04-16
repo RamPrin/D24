@@ -56,6 +56,8 @@ def modelize(description: Query):
         "Use the last PyTM library version. Provide only model code snippet"
     )
     text = response.output_text
+    if "```python" not in text:
+        text = f"```python\n{text}\n```"
     model : list[re.Match[str]] = re.findall(r"```python([\S\s]*?)\n```", text)
     return {"response": response.output_text, "model": model[0] if len(model) > 0 else ""}
 
